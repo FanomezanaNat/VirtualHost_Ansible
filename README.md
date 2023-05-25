@@ -1,5 +1,4 @@
-# VirtualHost-Apache2
-## Ansible Apache2 Folder Creation Project
+# Ansible Apache2 Folder Creation Project
 
 The "Ansible Apache2 Folder Creation" project aims to automate the process of creating folders on an Apache2 web server using Ansible. The main objective is to simplify the setup of new directories on the server, ensuring consistent and efficient folder management.
 
@@ -14,4 +13,10 @@ Before running the playbook, make sure you have the following prerequisites inst
 ## to run the ansible script you need to execute the command below:
 ###  ansible-playbook -i hosts apache.yml --ask-become-pass with a password:fanomezana
 
+# But above all you need to install ansible:
+```sh
+sudo apt update
+sudo apt install ansible
+```
+To conclude the script that i gave will help you to install apache automatically if you don't have on pc and help you to create host website
 
