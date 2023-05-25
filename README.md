@@ -11,7 +11,7 @@ Before running the playbook, make sure you have the following prerequisites inst
 
 
 ## to run the ansible script you need to execute the command below:
-###  ansible-playbook -i hosts apache.yml --ask-become-pass with a password:fanomezana
+###  ansible-playbook -i hosts apache.yml --ask-become-pass 
 
 # But above all you need to install ansible:
 ```sh
