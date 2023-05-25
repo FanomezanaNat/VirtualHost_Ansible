@@ -11,7 +11,7 @@ Before running the playbook, make sure you have the following prerequisites inst
 - SSH access: Ensure you have SSH access to the target server with the appropriate credentials.
 
 
-## to run the ansible srcipt you need to execute the command below:
+## to run the ansible script you need to execute the command below:
 ###  ansible-playbook -i hosts apache.yml --ask-become-pass with a password:fanomezana
 
-In conclusion, this project offers a practical solution for automating folder creation on an Apache2 web server using Ansible. Feel free to customize the playbook to fit your specific requirements and extend its functionality as needed.
+
