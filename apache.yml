@@ -1,0 +1,58 @@
+---
+- name: Automate Apache2 configuration
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Install Apache2 if it's not installed
+      apt:
+        name: apache2
+        update_cache: yes
+        state: latest
+
+    - name: Create directories folder 
+      file:
+        path: "{{ item }}"
+        state: directory
+        mode: 0755
+      with_items:
+        - /var/www/hei.school
+        - /var/www/api.hei.school
+        - /var/www/front.hei.school
+        - /var/www/back.hei.school
+
+    - name: Create HTML pages 
+      copy:
+        content: "{{ item.content }}"
+        dest: "{{ item.dest }}"
+        mode: 0644
+      with_items:
+        - { content: "<html><body><h1>www.hei.school</h1></body></html>", dest: "/var/www/hei.school/index.html" }
+        - { content: "<html><body><h1>api.hei.school</h1></body></html>", dest: "/var/www/api.hei.school/index.html" }
+        - { content: "<html><body><h1>front.hei.school</h1></body></html>", dest: "/var/www/front.hei.school/index.html" }
+        - { content: "<html><body><h1>back.hei.school</h1></body></html>", dest: "/var/www/back.hei.school/index.html" }
+
+    - name: Configure virtual hosts
+      template:
+        src: vhost.conf.j2
+        dest: "/etc/apache2/sites-available/{{ item.server_name }}.conf"
+      with_items:
+        - { server_name: "www.hei.school", document_root: "/var/www/hei.school" }
+        - { server_name: "api.hei.school", document_root: "/var/www/api.hei.school" }
+        - { server_name: "front.hei.school", document_root: "/var/www/front.hei.school" }
+        - { server_name: "back.hei.school", document_root: "/var/www/back.hei.school" }
+      notify: Reload Apache2
+
+    - name: Activate Apache2 sites
+      command: a2ensite {{ item.server_name }}
+      with_items:
+        - { server_name: "www.hei.school" }
+        - { server_name: "api.hei.school" }
+        - { server_name: "front.hei.school" }
+        - { server_name: "back.hei.school" }
+      notify: Reload Apache2
+
+  handlers:
+    - name: Reload Apache2
+      service:
+        name: apache2
+        state: reloaded
