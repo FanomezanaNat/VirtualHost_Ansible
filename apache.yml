@@ -9,7 +9,7 @@
         update_cache: yes
         state: latest
 
-    - name: Create directories folder 
+    - name: Create directories folder
       file:
         path: "{{ item }}"
         state: directory
@@ -20,7 +20,7 @@
         - /var/www/front.hei.school
         - /var/www/back.hei.school
 
-    - name: Create HTML pages 
+    - name: Create HTML pages
       copy:
         content: "{{ item.content }}"
         dest: "{{ item.dest }}"
@@ -50,6 +50,15 @@
         - { server_name: "front.hei.school" }
         - { server_name: "back.hei.school" }
       notify: Reload Apache2
+
+    - name: Add entries to /etc/hosts
+      lineinfile:
+        path: /etc/hosts
+        line: "{{ item.ip_address }} {{ item.hostnames | join(' ') }}"
+        state: present
+      with_items:
+        - ip_address: 192.168.88.17
+          hostnames: ['www.hei.school', 'api.hei.school', 'front.hei.school', 'back.hei.school']
 
   handlers:
     - name: Reload Apache2

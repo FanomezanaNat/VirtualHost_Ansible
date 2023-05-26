@@ -1,6 +1,0 @@
-- ip_address: 192.168.88.17
-  hostnames:
-    - www.hei.school
-    - api.hei.school
-    - front.hei.school
-    - back.hei.school
