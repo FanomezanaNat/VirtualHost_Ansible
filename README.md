@@ -1,23 +1,32 @@
-# Ansible Apache2 Folder Creation Project
+# Apache2 Configuration Automation
 
-The "Ansible Apache2 Folder Creation" project aims to automate the process of creating folders on an Apache2 web server using Ansible. The main objective is to simplify the setup of new directories on the server, ensuring consistent and efficient folder management.
+This repository contains an Ansible script to automate the configuration of Apache2 on a local machine.
 
-By utilizing this Ansible playbook, you can automate the creation of folders on an Apache2 web server, streamlining the process and reducing manual effort. This project provides a convenient way to ensure consistency and efficiency in folder management. 
+## Prerequisites
 
-Before running the playbook, make sure you have the following prerequisites installed:
-- Ansible: Version 2.10 or later.
-- Apache2: Installed and properly configured on the target server.
-- SSH access: Ensure you have SSH access to the target server with the appropriate credentials.
+Before running the script, make sure you have the following installed:
 
+- Ansible
+- Apache2
 
-## to run the ansible script you need to execute the command below:
+## Usage
+
+1. Clone this repository to your local machine.
+2. Ensure that you have administrative rights to execute the tasks.
+3. Modify the `hostConf` file to specify the IP addresses and hostnames of the sites you want to configure.
+4. Run the Ansible script with the following command:
+
 ```sh
  ansible-playbook -i hosts apache.yml --ask-become-pass 
 ```
+
+This will execute the configuration tasks, including Apache2 installation, directory creation, virtual host configuration, and adding entries to the `/etc/hosts` file.
+
+5. Once the script completes successfully, you can access the websites using the configured hostnames.
 # But above all you need to install ansible:
 ```sh
 sudo apt update
 sudo apt install ansible
 ```
-To conclude the script that i gave will help you to install apache automatically if you don't have on pc and help you to create host website
+
 
