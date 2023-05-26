@@ -30,5 +30,5 @@ sudo apt install ansible
 ```
 
 
-# warning: 
+ # ⚠️ warning:
 make sure that the ip address of line 60 is the ip address of your public server or when it is local or on your pc just put the ip address of your computer
