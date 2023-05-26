@@ -23,7 +23,7 @@ Before running the script, make sure you have the following installed:
 This will execute the configuration tasks, including Apache2 installation, directory creation, virtual host configuration, and adding entries to the `/etc/hosts` file.
 
 5. Once the script completes successfully, you can access the websites using the configured hostnames.
-# But above all you need to install ansible:
+# Command to install ansible:
 ```sh
 sudo apt update
 sudo apt install ansible
